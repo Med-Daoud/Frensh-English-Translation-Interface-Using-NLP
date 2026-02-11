@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>English-French Translation</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px;
+               }
+        textarea, select, button { width: 100%; padding: 10px; margin: 10px 0; }
+        .result { background: #e0e0e0; padding: 20px; border-radius: 5px; }
+         
+    </style>
+</head>
+<body>
+        <h1 id="transHeading">Translation</h1>
+    
+    <form method="POST">
+        <textarea name="text" rows="4" placeholder="Enter your text here..." required></textarea>
+        
+        <select id="langSelect" name="lang">
+            <option value="en_fr">English → French</option>
+            <option value="fr_en">French → English</option>
+        </select>
+        
+        <button type="submit">Translate</button>
+    </form>
+    
+    {% if translation %}
+    <div class="result">
+        <h3>Translation:</h3>
+        <p>{{ translation }}</p>
+    </div>
+    {% endif %}
+    
+</body>
+</html>
+<script>
+    const langSelect = document.getElementById('langSelect');
+    const transHeading = document.getElementById('transHeading');
+
+    transHeading.textContent = langSelect.options[langSelect.selectedIndex].text;
+
+    langSelect.addEventListener('change', () => {
+        transHeading.textContent = langSelect.options[langSelect.selectedIndex].text;
+    });
+</script>
